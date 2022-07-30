@@ -1,9 +1,9 @@
 <template>
   <div class="body123">
-    <div id="box123" class="box123" style="display: none">
+    <div id="box123" class="box123" v-if="show">
       <header>
-        <h3>${props.title}</h3>
-        <p>${props.desc}</p>
+        <h3>{{ props.title }}</h3>
+        <p>{{ props.desc }}</p>
         <svg
           width="20"
           height="20"
@@ -56,7 +56,9 @@
       </form>
     </div>
   </div>
+
   <button
+    @click="toggle"
     id="b123"
     class="animateB123"
     style="
@@ -95,16 +97,59 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { functionality } from "../composables/utils";
-import { useProps as props } from "../composables/props";
+
+const show = ref(false);
+const toggle = () => (show.value = !show.value);
+const props = defineProps({
+  openIcon: {
+    type: String,
+    default: `<rect x="0.900146" y="4.5" width="22.2" height="15" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+<path d="M22.5 5.25L12.8719 12.1272C12.3503 12.4998 11.6497 12.4998 11.1281 12.1272L1.5 5.25" stroke="currentColor" stroke-width="1.5"/>`, // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+  closeIcon: {
+    type: String,
+    default: `
+<path d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>å
+`, // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+  scriptURL: {
+    type: String,
+    default:
+      "https://script.google.com/macros/s/AKfycbwNddRBf6fJHnual0bmKRm6ExEHf6520FRv_2t66FO28tUBj4AiZlkr0lk2-p3iDAmf8g/exec", // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+  title: {
+    type: String,
+    default: "Company Title", // eslint-disable-line vue/valid-define-props
+    required: true,
+  },
+  desc: {
+    type: String,
+    default: "Description text goes here", // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+  color: {
+    type: String,
+    default: "rgb(55, 131, 55)", // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+  bgColor: {
+    type: String,
+    default: "darkBlue", // eslint-disable-line vue/valid-define-props
+    required: false,
+  },
+});
 
 onMounted(() => {
-  console.log(props.bgColor);
+  // functionality();
 });
 </script>
 
-<style scoped>
+<style>
 @keyframes float {
   0% {
     box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
