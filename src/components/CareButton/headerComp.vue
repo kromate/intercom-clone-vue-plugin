@@ -33,6 +33,7 @@ const props = defineProps({
   title: String,
   desc: String,
   bgColor: String,
+  color: String,
 });
 </script>
 
@@ -53,7 +54,7 @@ header {
   padding: 24px 24px 0px 50px;
   box-sizing: border-box;
   background: v-bind(props.bgColor);
-  color: white;
+  color: v-bind(props.color);
   min-height: 130px;
 }
 @media (max-width: 450px) {

@@ -5,6 +5,7 @@
         :title="props.title"
         :desc="props.desc"
         :bgColor="props.bgColor"
+        :color="props.color"
       />
       <formComp
         :title="props.title"
@@ -47,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
     "https://script.google.com/macros/s/AKfycbwNddRBf6fJHnual0bmKRm6ExEHf6520FRv_2t66FO28tUBj4AiZlkr0lk2-p3iDAmf8g/exec",
   title: "Company Title",
   desc: "Description text goes here",
-  color: "rgb(55, 131, 55)",
+  color: "white",
   bgColor: "darkBlue",
 });
 
@@ -115,9 +116,6 @@ onMounted(() => {
   overflow: hidden;
   transition: width 200ms ease 0s, height ease 0s, max-height ease 0s;
 }
-.black-text {
-  color: black;
-}
 
 @media (max-width: 450px) {
   .box123 {
@@ -137,18 +135,17 @@ onMounted(() => {
 <style>
 button {
   cursor: pointer;
-  color: white;
   transition: all 0.35s linear;
   border: none;
   outline: none;
   border-radius: 5px;
   min-height: 50px;
   padding: 1rem;
-  color: white;
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: v-bind(props.color);
   background-color: v-bind(props.bgColor);
 }
 
@@ -156,5 +153,8 @@ button:disabled {
   color: white;
   cursor: not-allowed;
   background-color: grey !important;
+}
+.black-text {
+  color: black;
 }
 </style>

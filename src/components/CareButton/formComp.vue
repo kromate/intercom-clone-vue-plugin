@@ -25,8 +25,17 @@
       </button>
     </div>
 
-    <div>
-        
+    <div v-if="submitted">
+      <h3 class="black-text">Form Submitted</h3>
+      <button @click="submitAgain">Send Another</button>
+    </div>
+
+    <div v-if="error">
+      <h3 class="black-text">
+        An Error Occurred <br />
+        please send again
+      </h3>
+      <button @click="tryAgain" class="shrrr">Retry</button>
     </div>
   </form>
 </template>
@@ -58,6 +67,7 @@ const emit = defineEmits<{
 }>();
 
 const formSubmit = (e) => {
+  loading.value = true;
   e.preventDefault();
   const form = e.srcElement;
   fetch(props.scriptURL, { method: "POST", body: new FormData(form) })
