@@ -21,8 +21,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import headerComp from "./headerComp.vue";
-import formComp from "./formComp.vue";
 import btnComp from "./btnComp.vue";
+import formComp from "./formComp.vue";
 
 export interface Props {
   openIcon?: string;
