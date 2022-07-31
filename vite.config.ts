@@ -17,7 +17,7 @@ export default defineConfig({
 					declaration: true,
 					declarationMap: true,
 				},
-				exclude: ['vite.config.ts', 'main.ts'],
+				exclude: ['vite.config.ts'],
 			},
 		}),
 	],
@@ -31,7 +31,7 @@ export default defineConfig({
 		lib: {
 			entry: './src/careButtonPlugin.ts',
 			formats: ['es', 'cjs'],
-			name: 'ViwerPlugin',
+			name: 'CareButtonPlugin',
 			fileName: (format) => (format === 'es' ? 'index.js' : 'index.cjs'),
 		},
 		rollupOptions: {
