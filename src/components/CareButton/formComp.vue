@@ -66,11 +66,13 @@ const emit = defineEmits<{
   (e: "error", msg: string): void;
 }>();
 
-const formSubmit = (e) => {
+const formSubmit = (e: any) => {
+  // eslint-disable-next-line no-undef
+  const url = props.scriptURL as RequestInfo;
   loading.value = true;
   e.preventDefault();
   const form = e.srcElement;
-  fetch(props.scriptURL, { method: "POST", body: new FormData(form) })
+  fetch(url, { method: "POST", body: new FormData(form) })
     .then((response) => {
       emit("submit", response);
       submitted.value = true;

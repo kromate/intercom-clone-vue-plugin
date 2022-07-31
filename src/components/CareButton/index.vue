@@ -65,8 +65,8 @@ const bgColorVal = bgColor || props.bgColor;
 const show = ref(false);
 const toggle = () => (show.value = !show.value);
 
-const onFormSubmit = (e) => console.log(e);
-const onFormError = (e) => console.log(e);
+const onFormSubmit = (e: any) => console.log(e);
+const onFormError = (e: any) => console.log(e);
 </script>
 
 <style scoped>
