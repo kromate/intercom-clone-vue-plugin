@@ -1,5 +1,5 @@
 <template>
-  <CareButton title="This is the Default" />
+  <CareButton title="This is the Default"  />
 </template>
 
 <script setup lang="ts">
