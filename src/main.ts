@@ -1,6 +1,7 @@
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
+import careButtonPlugin from './careButtonPlugin';
 
-import "./assets/main.css";
+import './assets/main.css';
 
-createApp(App).mount("#app");
+createApp(App).use(careButtonPlugin).mount('#app');

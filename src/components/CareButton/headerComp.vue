@@ -29,12 +29,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 const props = defineProps({
   title: String,
   desc: String,
   bgColor: String,
   color: String,
 });
+
+const bgColor = ref(props.bgColor);
+const color = ref(props.color);
 </script>
 
 <style scoped>
@@ -53,8 +58,8 @@ header {
   outline-offset: -5px;
   padding: 24px 24px 0px 50px;
   box-sizing: border-box;
-  background: v-bind(props.bgColor);
-  color: v-bind(props.color);
+  background: v-bind(bgColor);
+  color: v-bind(color);
   min-height: 130px;
 }
 @media (max-width: 450px) {

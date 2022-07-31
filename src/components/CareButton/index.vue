@@ -2,14 +2,14 @@
   <div class="body123">
     <div id="box123" class="box123" v-if="show">
       <headerComp
-        :title="props.title"
-        :desc="props.desc"
-        :bgColor="props.bgColor"
-        :color="props.color"
+        :title="titleVal"
+        :desc="descVal"
+        :bgColor="bgColorVal"
+        :color="colorVal"
       />
       <formComp
-        :title="props.title"
-        :scriptURL="props.scriptURL"
+        :title="titleVal"
+        :scriptURL="scriptURLVal"
         @submit="onFormSubmit"
         @error="onFormError"
       />
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, inject } from "vue";
 import headerComp from "./headerComp.vue";
 import btnComp from "./btnComp.vue";
 import formComp from "./formComp.vue";
@@ -34,11 +34,13 @@ export interface Props {
   bgColor?: string;
 }
 
-const show = ref(false);
-const toggle = () => (show.value = !show.value);
-
-const onFormSubmit = (e) => console.log(e);
-const onFormError = (e) => console.log(e);
+const openIcon = inject("openIcon") as string;
+const closeIcon = inject("closeIcon") as string;
+const scriptURL = inject("scriptURL") as string;
+const title = inject("title") as string;
+const desc = inject("desc") as string;
+const color = inject("color") as string;
+const bgColor = inject("bgColor") as string;
 
 const props = withDefaults(defineProps<Props>(), {
   openIcon: `<rect x="0.900146" y="4.5" width="22.2" height="15" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
@@ -52,9 +54,19 @@ const props = withDefaults(defineProps<Props>(), {
   bgColor: "darkBlue",
 });
 
-onMounted(() => {
-  // functionality();
-});
+const openIconVal = openIcon || props.openIcon;
+const closeIconVal = closeIcon || props.closeIcon;
+const scriptURLVal = scriptURL || props.scriptURL;
+const titleVal = title || props.title;
+const descVal = desc || props.desc;
+const colorVal = color || props.color;
+const bgColorVal = bgColor || props.bgColor;
+
+const show = ref(false);
+const toggle = () => (show.value = !show.value);
+
+const onFormSubmit = (e) => console.log(e);
+const onFormError = (e) => console.log(e);
 </script>
 
 <style scoped>
@@ -145,8 +157,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: v-bind(props.color);
-  background-color: v-bind(props.bgColor);
+  color: v-bind(colorVal);
+  background-color: v-bind(bgColorVal);
 }
 
 button:disabled {
